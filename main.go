@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"text/template"
 )
 
@@ -37,6 +38,9 @@ func main() {
 	makeMakefile(project)
 	makeRb(project)
 	makeReadme(project)
+	gitInit()
+	gitAddAll()
+	gitCommit()
 }
 
 func dirname(project string) string {
@@ -99,17 +103,7 @@ func makeRb(project string) {
     docset_file_name '{{.Project}}'
     keyword '{{.Project}}'
     category do
-        id 'Example category'
-        entry do
-            name 'example entry with notes'
-            notes <<-'END'
-            Markdown goes here
-            END
-        end
-        entry do
-            name 'example entry with commands'
-            command 'ESC'
-        end
+        id ''
     end
 end
 `
@@ -119,5 +113,23 @@ end
 func makeGitIgnore() {
 	text := "*.docset\n"
 	err := ioutil.WriteFile(".gitignore", []byte(text), 0755)
+	check(err)
+}
+
+func gitInit() {
+	cmd := exec.Command("git", "init")
+	err := cmd.Run()
+	check(err)
+}
+
+func gitAddAll() {
+	cmd := exec.Command("git", "add", ".")
+	err := cmd.Run()
+	check(err)
+}
+
+func gitCommit() {
+	cmd := exec.Command("git", "commit", "-m", "initial commit")
+	err := cmd.Run()
 	check(err)
 }
