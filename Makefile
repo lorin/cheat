@@ -1,6 +1,6 @@
 .PHONY: run
 
-run: cheat
+run: clean cheat
 	./cheat foo
 
 cheat: main.go
@@ -10,6 +10,6 @@ cheat: main.go
 	go build
 
 clean:
-	rm -r foo-cheat-sheet
+	rm -rf foo-cheat-sheet
 	rm cheat
 
