@@ -27,11 +27,5 @@ foo-cheat-sheet
 └── foo.rb
 ```
 
-It will also create a git repository and commit the files.
-
 [1]: https://kapeli.com/dash
 [2]: https://github.com/Kapeli/cheatset
-
-
-
-
