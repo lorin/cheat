@@ -38,9 +38,13 @@ func main() {
 	makeMakefile(project)
 	makeRb(project)
 	makeReadme(project)
+
+    // No longer creating git repo by default
+    /*
 	gitInit()
 	gitAddAll()
 	gitCommit()
+    */
 }
 
 func dirname(project string) string {
