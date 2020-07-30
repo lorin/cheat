@@ -38,13 +38,6 @@ func main() {
 	makeMakefile(project)
 	makeRb(project)
 	makeReadme(project)
-
-    // No longer creating git repo by default
-    /*
-	gitInit()
-	gitAddAll()
-	gitCommit()
-    */
 }
 
 func dirname(project string) string {
@@ -117,23 +110,5 @@ end
 func makeGitIgnore() {
 	text := "*.docset\n"
 	err := ioutil.WriteFile(".gitignore", []byte(text), 0755)
-	check(err)
-}
-
-func gitInit() {
-	cmd := exec.Command("git", "init")
-	err := cmd.Run()
-	check(err)
-}
-
-func gitAddAll() {
-	cmd := exec.Command("git", "add", ".")
-	err := cmd.Run()
-	check(err)
-}
-
-func gitCommit() {
-	cmd := exec.Command("git", "commit", "-m", "initial commit")
-	err := cmd.Run()
 	check(err)
 }
